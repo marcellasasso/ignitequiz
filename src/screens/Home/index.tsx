@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FlatList, View } from 'react-native';
+
 import { Trophy } from 'phosphor-react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -9,6 +10,7 @@ import { QuizCard } from '../../components/QuizCard';
 
 import { styles } from './styles';
 import { QUIZZES } from '../../data/quizzes';
+
 
 export function Home() {
   const [quizzes, setQuizzes] = useState(QUIZZES);
@@ -50,8 +52,9 @@ export function Home() {
       <FlatList
         data={quizzes}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <QuizCard
+            index={index}
             data={item}
             onPress={() => navigate('quiz', { id: item.id })}
           />
